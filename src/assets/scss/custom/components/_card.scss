@@ -1,0 +1,87 @@
+//
+// _card.scss
+//
+
+.card {
+  margin-bottom: $grid-gutter-width;
+  box-shadow: $box-shadow;
+}
+
+.card-drop {
+  font-size: 20px;
+  line-height: 0;
+  color: inherit;
+}
+
+.card-title {
+  font-size: 15px;
+  margin: 0 0 7px 0;
+  font-weight: $font-weight-medium;
+}
+
+.card-title-desc {
+  color: $card-title-desc;
+  margin-bottom: 24px;
+}
+
+.dashboard-card {
+  max-height: 350px;
+  overflow-y: auto;
+
+  .status-exchange-expiring {
+    span,
+    i {
+      padding: 5px 5px 5px;
+    }
+  }
+
+  .avatar-icon-empty {
+    i {
+      color: $sidebar-menu-item-color;
+    }
+  }
+
+  i {
+    color: $sidebar-menu-item-icon-color;
+  }
+  .avatar-icon-empty__text {
+    color: $sidebar-menu-item-color;
+  }
+}
+
+.storage-card {
+  max-height: 800px;
+  overflow-y: auto;
+  min-height: 450px;
+}
+
+.reports-card {
+  align-items: center;
+  &:hover {
+    h2 {
+      color: $sidebar-menu-item-icon-color;
+    }
+    i {
+      color: $sidebar-menu-item-icon-color;
+    }
+  }
+  &__icon {
+    i {
+      font-size: 60px;
+      line-height: 1;
+      color: $sidebar-menu-item-color;
+    }
+  }
+  &__text {
+    font-size: 20px;
+    line-height: 1;
+
+    h2 {
+      font-size: 28px;
+      font-weight: 500;
+      margin-top: 10px;
+      padding: 10px 20px;
+      color: $sidebar-menu-item-color;
+    }
+  }
+}

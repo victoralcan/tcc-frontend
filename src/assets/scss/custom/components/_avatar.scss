@@ -1,0 +1,65 @@
+//
+// avatar.scss
+//
+
+.avatar-xs {
+  height: 2rem;
+  width: 2rem;
+}
+
+.avatar-sm {
+  height: 3rem;
+  width: 3rem;
+}
+
+.avatar-md {
+  height: 4.5rem;
+  width: 4.5rem;
+}
+
+.avatar-lg {
+  height: 6rem;
+  width: 6rem;
+}
+
+.avatar-xl {
+  height: 7.5rem;
+  width: 7.5rem;
+}
+
+.avatar-title {
+  align-items: center;
+  background-color: $primary;
+  color: $white;
+  display: flex;
+  font-weight: $font-weight-medium;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+.avatar-icon-empty {
+  &__icon {
+    i {
+      font-size: 60px;
+      line-height: 1;
+    }
+  }
+  &__text {
+    font-size: 20px;
+    a {
+      font-size: 14px;
+      font-weight: 500;
+
+      display: inline-block;
+
+      margin-top: 30px;
+      padding: 10px 30px;
+
+      transition: 0.3s;
+
+      color: $white;
+      background-color: #363f4d;
+    }
+  }
+}

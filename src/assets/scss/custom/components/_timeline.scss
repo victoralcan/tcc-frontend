@@ -1,0 +1,32 @@
+.css-o1utbh {
+  .css-1b3lipl::before {
+    background-color: $sidebar-menu-item-icon-color;
+  }
+
+  .css-1psltl0 {
+    .css-1jv1kel {
+      h3 {
+        font-weight: bold;
+      }
+      h4 {
+        font-weight: bold;
+        color: #7c8a96;
+      }
+      .body-timeline {
+        li {
+          list-style-type: disc;
+          margin-left: 20px;
+
+          span {
+              size: 100px;
+          }
+        }
+      }
+    }
+
+    .css-692fgp,
+    .css-vcfpfv {
+      background-color: $sidebar-menu-item-icon-color;
+    }
+  }
+}

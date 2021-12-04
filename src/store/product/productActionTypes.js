@@ -1,0 +1,12 @@
+export const GET_PRODUCT_LIST = "GET_PRODUCT_LIST";
+export const GET_PRODUCT = "GET_PRODUCT";
+export const ADD_PRODUCT = "ADD_PRODUCT";
+export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
+export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
+
+export const ADD_VARIATION = "ADD_VARIATION";
+export const REMOVE_VARIATION = "REMOVE_VARIATION";
+export const UPDATE_VARIATION = "UPDATE_VARIATION";
+
+export const ADD_IMAGE = "ADD_IMAGE";
+export const REMOVE_IMAGE = "REMOVE_IMAGE";

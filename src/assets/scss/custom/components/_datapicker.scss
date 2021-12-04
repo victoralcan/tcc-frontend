@@ -1,0 +1,26 @@
+.react-daterange-picker__wrapper {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 0;
+    align-items: center;
+    border: thin solid #ced4da;
+    border-radius: 3px;
+    min-height: 40px;
+    min-width: 280px;
+  }
+
+  .react-daterange-picker__inputGroup__input {
+    min-width: 0.54em;
+    height: 100%;
+    position: relative;
+    padding: 0 2px;
+    border: 0;
+    background: none;
+    font: inherit;
+    box-sizing: content-box;
+    -moz-appearance: textfield;
+  }
+
+  .react-daterange-picker__inputGroup {
+    padding: 0 10px;
+  }
