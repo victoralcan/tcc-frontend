@@ -11,10 +11,14 @@ import AuthLockScreen from '../pages/Authentication/AuthLockScreen';
 
 // Platform
 import Tables from '../pages/Table/Tables';
+import Subcategories from '../pages/Subcategory/Subcategories';
+import Categories from '../pages/Category/Categories';
 
 const authProtectedRoutes = [
   // Tables
   { path: '/tables', component: Tables},
+  { path: '/categories', component: Categories},
+  { path: '/subcategories', component: Subcategories},
   // this route should be at the end of all other routes
   { path: '/', exact: true, component: () => <Redirect to="/tables" /> },
 ];

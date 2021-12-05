@@ -91,6 +91,18 @@ class SidebarContent extends Component {
                 <span className="ml-1">{this.props.t('Tables')}</span>
               </Link>
             </li>
+            <li>
+              <Link to="/categories">
+                <i className="ri-coupon-line"></i>
+                <span className="ml-1">{this.props.t('Categorias')}</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/subcategories">
+                <i className="ri-coupon-line"></i>
+                <span className="ml-1">{this.props.t('Subcategorias')}</span>
+              </Link>
+            </li>
           </ul>
         </div>
         <div id="sidebar-menu">
