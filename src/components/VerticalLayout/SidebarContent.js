@@ -88,7 +88,7 @@ class SidebarContent extends Component {
             <li>
               <Link to="/tables">
                 <i className="ri-coupon-line"></i>
-                <span className="ml-1">{this.props.t('Tables')}</span>
+                <span className="ml-1">{this.props.t('Mesas')}</span>
               </Link>
             </li>
             <li>
@@ -101,6 +101,12 @@ class SidebarContent extends Component {
               <Link to="/subcategories">
                 <i className="ri-coupon-line"></i>
                 <span className="ml-1">{this.props.t('Subcategorias')}</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/itens">
+                <i className="ri-coupon-line"></i>
+                <span className="ml-1">{this.props.t('Itens')}</span>
               </Link>
             </li>
           </ul>

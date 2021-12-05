@@ -27,25 +27,25 @@ import Breadcrumbs from '../../components/Common/Breadcrumb';
 
 import { dateFormFieldFormatter } from '../../helpers/format_helper';
 import {
-  createSubcategory,
-  getSubcategoryList,
-  removeSubcategory,
-  updateSubcategory,
+  createItem,
+  getItemList,
+  removeItem,
+  updateItem,
   getStatusValues,
-} from '../../services/subcategory';
+} from '../../services/item';
 import {
-  getCategoryList,
-} from '../../services/category';
+  getSubcategoryList,
+} from '../../services/subcategory';
 import { isAuthenticated } from '../../services/auth';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 import './datatables.scss';
 import { date } from 'date-fns/locale/af';
 
-const Subcategories = () => {
+const Itens = () => {
   const [statusList, setStatusList] = useState([]);
   const [additionalServiceList, setAdditionalServiceList] = useState([]);
-  const initSubcategory = {
+  const initItem = {
     id: '',
     number: '',
     busy: '', // select
@@ -60,13 +60,13 @@ const Subcategories = () => {
     loading: false,
     modal_static: false,
     isAlertOpen: false,
-    subcategory: initSubcategory,
+    item: initItem,
   });
-  const [categories,setCategories] = useState([]);
-  const [category,setCategory] = useState();
-  const { breadcrumbItems, cupomList, modal_static, subcategory, loading } = values;
+  const [subcategories,setSubcategories] = useState([]);
+  const [subcategory,setSubcategory] = useState();
+  const { breadcrumbItems, cupomList, modal_static, item, loading } = values;
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
-  const [deleteSubcategoryId, setDeleteSubcategoryId] = useState(null);
+  const [deleteItemId, setDeleteItemId] = useState(null);
 
   const loadStatusValues = () => {
   };
@@ -76,8 +76,8 @@ const Subcategories = () => {
   const init = () => {
     setValues({ ...values, loading: true });
     setShowConfirmDelete(false);
-    setDeleteSubcategoryId(null);
-    getCategoryList().then((res) => {
+    setDeleteItemId(null);
+    getSubcategoryList().then((res) => {
       if (res.error)
         setValues({
           ...values,
@@ -86,10 +86,10 @@ const Subcategories = () => {
         });
       else {
         console.log(res);
-        setCategories(res);
+        setSubcategories(res);
       }
     });
-    getSubcategoryList().then((res) => {
+    getItemList().then((res) => {
       if (res.error)
         setValues({
           ...values,
@@ -121,52 +121,52 @@ const Subcategories = () => {
     }));
   };
 
-  const saveSubcategory = (event, cupomFormData) => {
+  const saveItem = (event, cupomFormData) => {
     cupomFormData.busy = false;
     cupomFormData.active = true;
-    if (!subcategory.id) {
-      createSubcategory( cupomFormData).then((result) => {
+    if (!item.id) {
+      createItem( cupomFormData).then((result) => {
         if (result.error) {
           toastr.error(result.error);
         } else {
-          toastr.success('Subcategory criado com sucesso!');
+          toastr.success('Item criado com sucesso!');
           init();
         }
       });
     } else {
-      cupomFormData.id = subcategory.id;
-      updateSubcategory(cupomFormData).then((data) => {
+      cupomFormData.id = item.id;
+      updateItem(cupomFormData).then((data) => {
         if (data.error) {
           toastr.error(data.error);
         } else {
-          toastr.success('Subcategory salvo com sucesso!');
+          toastr.success('Item salvo com sucesso!');
           init();
         }
       });
     }
   };
 
-  const editSubcategory = (cupomId) => {
-    const editSubcategories = cupomList.filter((item) => item.id === cupomId);
-    editSubcategories.map((cupomItem) => {
+  const editItem = (cupomId) => {
+    const editItens = cupomList.filter((item) => item.id === cupomId);
+    editItens.map((cupomItem) => {
       cupomItem.valid_thru = moment(cupomItem.valid_thru).format('YYYY-MM-DD');
-      setCategory(cupomItem.category_id);
-      setValues({ ...values, subcategory: cupomItem, modal_static: !modal_static });
+      setSubcategory(cupomItem.sub_category_id);
+      setValues({ ...values, item: cupomItem, modal_static: !modal_static });
     });
   };
 
-  const deleteSubcategory = () => {
-    removeSubcategory(deleteSubcategoryId).then((result) => {
+  const deleteItem = () => {
+    removeItem(deleteItemId).then((result) => {
       if (result.error) {
         toastr.error(result.error);
       } else {
-        toastr.success('Subcategory excluído com sucesso!');
+        toastr.success('Item excluído com sucesso!');
         init();
       }
     });
   };
 
-  const confirmDeleteSubcategory = () => (
+  const confirmDeleteItem = () => (
     <SweetAlert
       title="Tem certeza?"
       warning
@@ -174,19 +174,19 @@ const Subcategories = () => {
       confirmBtnBsStyle="success"
       cancelBtnBsStyle="danger"
       onConfirm={() => {
-        deleteSubcategory();
+        deleteItem();
       }}
       onCancel={() => {
         setShowConfirmDelete(false);
-        setDeleteSubcategoryId(null);
+        setDeleteItemId(null);
       }}
     >
       Esta ação não poderá ser desfeita.
     </SweetAlert>
   );
 
-  const addNewSubcategory = () => {
-    setValues({ ...values, subcategory: initSubcategory, modal_static: !modal_static });
+  const addNewItem = () => {
+    setValues({ ...values, item: initItem, modal_static: !modal_static });
   };
 
   const actionColumn = (cupomId) => (
@@ -198,7 +198,7 @@ const Subcategories = () => {
         <Dropdown.Menu>
           <Dropdown.Item
             onClick={() => {
-              editSubcategory(cupomId);
+              editItem(cupomId);
             }}
           >
             Ver/Alterar
@@ -206,7 +206,7 @@ const Subcategories = () => {
           <Dropdown.Item
             onClick={() => {
               setShowConfirmDelete(true);
-              setDeleteSubcategoryId(cupomId);
+              setDeleteItemId(cupomId);
             }}
           >
             Excluir
@@ -216,21 +216,23 @@ const Subcategories = () => {
     </Fragment>
   );
 
-  const formattedSubcategoryList = (subcategories) => {
-    if (!subcategories) return [];
-    return subcategories.map((subcategory) => ({
-      id: subcategory.id,
-      name: subcategory.name,
-      description: subcategory.description,
-      seats: subcategory.seats,
-      active: subcategory.active,
-      action: actionColumn(subcategory.id),
+  const formattedItemList = (itens) => {
+    if (!itens) return [];
+    return itens.map((item) => ({
+      id: item.id,
+      name: item.name,
+      description: item.description,
+      sub_category_id: item.sub_category_id,
+      sub_category_id: item.sub_category_id,
+      value: item.value,
+      image_url: item.image_url,
+      action: actionColumn(item.id),
     }));
   };
 
-  const tableSubcategoryContent = {
+  const tableItemContent = {
     columns: [
-      { label: 'Nome do Subcategory', field: 'name', sort: 'asc', width: 100 },
+      { label: 'Nome do Item', field: 'name', sort: 'asc', width: 100 },
       {
         label: 'Descrição',
         field: 'description',
@@ -239,38 +241,38 @@ const Subcategories = () => {
       },
       { label: 'Ações', field: 'action', width: 150 },
     ],
-    rows: formattedSubcategoryList(cupomList),
+    rows: formattedItemList(cupomList),
   };
 
-  const showModalSubcategory = () => {
+  const showModalItem = () => {
     setValues({ ...values, modal_static: !modal_static });
   };
 
-  const modalSubcategory = () => (
+  const modalItem = () => (
     <Modal
       isOpen={modal_static}
-      toggle={showModalSubcategory}
+      toggle={showModalItem}
       backdrop="static"
       centered
       size="lg"
     >
-      <ModalHeader toggle={showModalSubcategory}>
-        {subcategory.id ? 'Editar Subcategory' : 'Adicionar Subcategory'}
+      <ModalHeader toggle={showModalItem}>
+        {item.id ? 'Editar Item' : 'Adicionar Item'}
       </ModalHeader>
       <ModalBody>
-        <AvForm onValidSubmit={saveSubcategory}>
+        <AvForm onValidSubmit={saveItem}>
           <Row>
             <Col lg={6}>
               <FormGroup>
-                <Label htmlFor="name">Nome do subcategory</Label>
+                <Label htmlFor="name">Nome do item</Label>
                 <AvField
                   name="name"
-                  value={subcategory.name}
+                  value={item.name}
                   type="text"
                   className="form-control"
                   id="cupomCode"
-                  placeholder="Número do subcategory"
-                  errorMessage=" Informe o Número do subcategory."
+                  placeholder="Número do item"
+                  errorMessage=" Informe o Número do item."
                   validate={{ required: { value: true } }}
                 />
               </FormGroup>
@@ -280,12 +282,50 @@ const Subcategories = () => {
                 <Label htmlFor="description">Descrição</Label>
                 <AvField
                   name="description"
-                  value={subcategory.description}
+                  value={item.description}
                   type="text"
                   className="form-control"
                   id="cupomCode"
                   placeholder="Número de cadeiras"
-                  errorMessage=" Informe o Número do subcategory."
+                  errorMessage=" Informe o Número do item."
+                  validate={{ required: { value: true } }}
+                />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col lg={6}>
+            <FormGroup>
+              <Label htmlFor="sub_category_id">Categoria</Label>
+                <AvField
+                  name="sub_category_id"
+                  type="select"
+                  className="form-control"
+                  id="sub_category_id"
+                  placeholder="UF"
+                  errorMessage=" Informe a UF do endereço."
+                  value={subcategory}
+                >
+                  <option>Selecione</option>
+                  {subcategories.map((id, i) => (
+                    <option value={id.id} key={i}>
+                      {id.name}
+                    </option>
+                  ))}
+                </AvField>
+              </FormGroup>
+            </Col>
+            <Col lg={6}>
+            <FormGroup>
+                <Label htmlFor="value">Valor</Label>
+                <AvField
+                  name="value"
+                  value={item.value}
+                  type="number"
+                  className="form-control"
+                  id="cupomCode"
+                  placeholder="Número de cadeiras"
+                  errorMessage=" Informe o Número do item."
                   validate={{ required: { value: true } }}
                 />
               </FormGroup>
@@ -294,28 +334,22 @@ const Subcategories = () => {
           <Row>
             <Col lg={12}>
             <FormGroup>
-              <Label htmlFor="category_id">categoria</Label>
+                <Label htmlFor="image_url">Url da imagem</Label>
                 <AvField
-                  name="category_id"
-                  type="select"
+                  name="image_url"
+                  value={item.image_url}
+                  type="text"
                   className="form-control"
-                  id="category_id"
-                  placeholder="UF"
-                  errorMessage=" Informe a UF do endereço."
-                  value={category}
-                >
-                  <option>Selecione</option>
-                  {categories.map((id, i) => (
-                    <option value={id.id} key={i}>
-                      {id.name}
-                    </option>
-                  ))}
-                </AvField>
+                  id="cupomCode"
+                  placeholder="Número de cadeiras"
+                  errorMessage=" Informe o Número do item."
+                  validate={{ required: { value: true } }}
+                />
               </FormGroup>
             </Col>
           </Row>
           <ModalFooter>
-            <Button type="button" color="light" onClick={showModalSubcategory}>
+            <Button type="button" color="light" onClick={showModalItem}>
               Cancelar
             </Button>
             <Button type="submit" color="primary">
@@ -338,7 +372,7 @@ const Subcategories = () => {
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-          <Breadcrumbs title="Subcategories" breadcrumbItems={breadcrumbItems} />
+          <Breadcrumbs title="Itens" breadcrumbItems={breadcrumbItems} />
           <Row>
             <Col xs={12}>
               <Card>
@@ -346,34 +380,34 @@ const Subcategories = () => {
                   <div>
                     <Link
                       to="#"
-                      onClick={addNewSubcategory}
+                      onClick={addNewItem}
                       className="btn btn-success mb-2"
                     >
-                      <i className="mdi mdi-plus mr-2"></i> Novo Subcategory
+                      <i className="mdi mdi-plus mr-2"></i> Novo Item
                     </Link>
                   </div>
                   {showLoading()}
                   <MDBDataTable
                     responsive
-                    data={tableSubcategoryContent}
+                    data={tableItemContent}
                     noBottomColumns
                     disableRetreatAfterSorting
-                    infoLabel={['Mostrando', 'a', 'de', 'subcategories']}
+                    infoLabel={['Mostrando', 'a', 'de', 'itens']}
                     searchLabel="Buscar"
                     paginationLabel={['Anterior', 'Próximo']}
-                    entriesLabel="Mostrando subcategories"
-                    noRecordsFoundLabel="Nenhum subcategory encontrado"
+                    entriesLabel="Mostrando itens"
+                    noRecordsFoundLabel="Nenhum item encontrado"
                   />
                 </CardBody>
               </Card>
             </Col>
           </Row>
-          {modalSubcategory()}
-          {showConfirmDelete && confirmDeleteSubcategory()}
+          {modalItem()}
+          {showConfirmDelete && confirmDeleteItem()}
         </Container>
       </div>
     </React.Fragment>
   );
 };
 
-export default Subcategories;
+export default Itens;
