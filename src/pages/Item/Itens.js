@@ -232,10 +232,21 @@ const Itens = () => {
 
   const tableItemContent = {
     columns: [
-      { label: 'Nome do Item', field: 'name', sort: 'asc', width: 100 },
+      { 
+        label: 'Nome do Item', 
+        field: 'name', 
+        sort: 'asc', 
+        width: 100 
+      },
       {
         label: 'Descrição',
         field: 'description',
+        sort: 'asc',
+        width: 100,
+      },
+      {
+        label: 'Valor',
+        field: 'value',
         sort: 'asc',
         width: 100,
       },
