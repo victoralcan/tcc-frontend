@@ -24,8 +24,8 @@ export const getTable = ( id ) => {
   });
 };
 
-export const createTable = (cupom) => {
-  return axios.post(`${API_URL}/tables/`, cupom, { headers: authHeader() })
+export const createTable = (table) => {
+  return axios.post(`${API_URL}/tables/`, table, { headers: authHeader() })
   .then( response => {
     return response.data;
   })
@@ -35,8 +35,8 @@ export const createTable = (cupom) => {
   });
 };
 
-export const removeTable = (cupomId) => {
-  return axios.delete(`${API_URL}/tables/${cupomId}`, { headers: authHeader() })
+export const removeTable = (tableId) => {
+  return axios.delete(`${API_URL}/tables/${tableId}`, { headers: authHeader() })
   .then (response => {
     return response.data;
   })
@@ -46,8 +46,8 @@ export const removeTable = (cupomId) => {
   });
 };
 
-export const updateTable = (cupom) => {
-  return axios.put(`${API_URL}/tables/${cupom.id}`, cupom, { headers: authHeader() })
+export const updateTable = (table) => {
+  return axios.put(`${API_URL}/tables/`, table, { headers: authHeader() })
   .then (response => {
     return response.data;
   })

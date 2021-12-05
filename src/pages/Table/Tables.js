@@ -43,15 +43,11 @@ const Tables = () => {
   const [statusList, setStatusList] = useState([]);
   const [additionalServiceList, setAdditionalServiceList] = useState([]);
   const initTable = {
-    _id: '',
-    code: '',
-    discount_type: '', // select
-    discount_value: '',
-    valid_thru: '',
-    products_apply: '', // select
-    customer_apply: '',
-    cycles_qty: '',
-    selling_model: '',
+    id: '',
+    number: '',
+    busy: '', // select
+    seats: '',
+    active: '',
   };
 
   const [values, setValues] = useState({
@@ -110,12 +106,9 @@ const Tables = () => {
   };
 
   const saveTable = (event, cupomFormData) => {
-    cupomFormData.discount_value = parseNum(cupomFormData.discount_value, ',');
-    cupomFormData.cycles_qty = parseNum(cupomFormData.cycles_qty, ',');
-    cupomFormData.customer_apply = '';
-    cupomFormData.products_apply = '';
-    cupomFormData.valid_thru = moment(cupomFormData.valid_thru).endOf('day');
-    if (!table._id) {
+    cupomFormData.busy = false;
+    cupomFormData.active = true;
+    if (!table.id) {
       createTable( cupomFormData).then((result) => {
         if (result.error) {
           toastr.error(result.error);
@@ -125,7 +118,7 @@ const Tables = () => {
         }
       });
     } else {
-      cupomFormData._id = table._id;
+      cupomFormData.id = table.id;
       updateTable(cupomFormData).then((data) => {
         if (data.error) {
           toastr.error(data.error);
@@ -251,115 +244,37 @@ const Tables = () => {
       size="lg"
     >
       <ModalHeader toggle={showModalTable}>
-        {table._id ? 'Editar Table' : 'Adicionar Table'}
+        {table.id ? 'Editar Table' : 'Adicionar Table'}
       </ModalHeader>
       <ModalBody>
         <AvForm onValidSubmit={saveTable}>
           <Row>
             <Col lg={6}>
               <FormGroup>
-                <Label htmlFor="code">Código do table</Label>
+                <Label htmlFor="number">Código do table</Label>
                 <AvField
-                  name="code"
-                  value={table.code}
-                  type="text"
+                  name="number"
+                  value={table.number}
+                  type="number"
                   className="form-control"
                   id="cupomCode"
-                  placeholder="Código do table"
-                  errorMessage=" Informe o código do table."
+                  placeholder="Número do table"
+                  errorMessage=" Informe o Número do table."
                   validate={{ required: { value: true } }}
                 />
               </FormGroup>
             </Col>
             <Col lg={6}>
-              <FormGroup>
-                <Label htmlFor="valid_thru">Válido até</Label>
+            <FormGroup>
+                <Label htmlFor="seats">Assentos</Label>
                 <AvField
-                  name="valid_thru"
-                  placeholder="DD/MM/YYY"
-                  type="date"
-                  errorMessage=" Informe a validade do table."
-                  className="form-control"
-                  validate={{ required: { value: true } }}
-                  id="cupomValid_thru"
-                  value={table.valid_thru}
-                />
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row>
-            <Col lg={6}>
-              <FormGroup>
-                <Label htmlFor="discount_type">Tipo de table</Label>
-                <AvField
-                  name="discount_type"
-                  type="select"
-                  errorMessage=" Selecione o tipo de table."
-                  className="form-control"
-                  validate={{ required: { value: true } }}
-                  id="cupomDiscount_type"
-                  value={table.discount_type}
-                >
-                  <option>Selecione</option>
-                  <option value="percent" key="percent">
-                    Porcentagem
-                  </option>
-                  <option value="value" key="value">
-                    Valor
-                  </option>
-                </AvField>
-              </FormGroup>
-            </Col>
-            <Col lg={6}>
-              <FormGroup>
-                <Label htmlFor="discount_value">Valor do desconto</Label>
-                <AvField
-                  name="discount_value"
-                  value={table.discount_value}
+                  name="seats"
+                  value={table.seats}
                   type="number"
                   className="form-control"
-                  id="cupomDiscount_value"
-                  placeholder="0"
-                  errorMessage=" Informe o desconto do table."
-                  validate={{ required: { value: true } }}
-                />
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row>
-            <Col lg={6}>
-              <FormGroup>
-                <Label htmlFor="selling_model">Modelo de venda</Label>
-                <AvField
-                  name="selling_model"
-                  type="select"
-                  errorMessage=" Selecione o modelo de venda."
-                  className="form-control"
-                  validate={{ required: { value: true } }}
-                  id="cupomSelling_model"
-                  value={table.selling_model}
-                >
-                  <option>Selecione</option>
-                  <option value="plan" key="plan">
-                    Plano
-                  </option>
-                  <option value="sale" key="sale">
-                    Venda
-                  </option>
-                </AvField>
-              </FormGroup>
-            </Col>
-            <Col lg={6}>
-              <FormGroup>
-                <Label htmlFor="cycles_qty">Ciclos de desconto</Label>
-                <AvField
-                  name="cycles_qty"
-                  value={table.cycles_qty}
-                  type="number"
-                  className="form-control"
-                  id="cupomCycles_qty"
-                  placeholder="0"
-                  errorMessage=" Informe o desconto do table."
+                  id="cupomCode"
+                  placeholder="Número de cadeiras"
+                  errorMessage=" Informe o Número do table."
                   validate={{ required: { value: true } }}
                 />
               </FormGroup>
