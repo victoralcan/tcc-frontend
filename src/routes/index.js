@@ -14,6 +14,7 @@ import Tables from '../pages/Table/Tables';
 import Subcategories from '../pages/Subcategory/Subcategories';
 import Categories from '../pages/Category/Categories';
 import Itens from '../pages/Item/Itens';
+import Roles from '../pages/Role/Roles';
 
 const authProtectedRoutes = [
   // Tables
@@ -21,6 +22,7 @@ const authProtectedRoutes = [
   { path: '/categories', component: Categories},
   { path: '/subcategories', component: Subcategories},
   { path: '/itens', component: Itens},
+  { path: '/roles', component: Roles},
   // this route should be at the end of all other routes
   { path: '/', exact: true, component: () => <Redirect to="/tables" /> },
 ];
