@@ -297,8 +297,8 @@ const Itens = () => {
                   type="text"
                   className="form-control"
                   id="cupomCode"
-                  placeholder="Número de cadeiras"
-                  errorMessage=" Informe o Número do item."
+                  placeholder="Descrição"
+                  errorMessage=" Informe o Descrição do item."
                   validate={{ required: { value: true } }}
                 />
               </FormGroup>
@@ -335,8 +335,8 @@ const Itens = () => {
                   type="number"
                   className="form-control"
                   id="cupomCode"
-                  placeholder="Número de cadeiras"
-                  errorMessage=" Informe o Número do item."
+                  placeholder="Valor do Item"
+                  errorMessage=" Informe o Valor do item."
                   validate={{ required: { value: true } }}
                 />
               </FormGroup>
@@ -352,8 +352,8 @@ const Itens = () => {
                   type="text"
                   className="form-control"
                   id="cupomCode"
-                  placeholder="Número de cadeiras"
-                  errorMessage=" Informe o Número do item."
+                  placeholder="URL da Imagem do item"
+                  errorMessage=" Informe a URL da Imagem do item."
                   validate={{ required: { value: true } }}
                 />
               </FormGroup>

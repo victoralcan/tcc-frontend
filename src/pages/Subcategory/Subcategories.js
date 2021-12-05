@@ -230,7 +230,7 @@ const Subcategories = () => {
 
   const tableSubcategoryContent = {
     columns: [
-      { label: 'Nome do Subcategory', field: 'name', sort: 'asc', width: 100 },
+      { label: 'Nome da Subcategoria', field: 'name', sort: 'asc', width: 100 },
       {
         label: 'Descrição',
         field: 'description',
@@ -255,22 +255,22 @@ const Subcategories = () => {
       size="lg"
     >
       <ModalHeader toggle={showModalSubcategory}>
-        {subcategory.id ? 'Editar Subcategory' : 'Adicionar Subcategory'}
+        {subcategory.id ? 'Editar Subcategoria' : 'Adicionar SubCategoria'}
       </ModalHeader>
       <ModalBody>
         <AvForm onValidSubmit={saveSubcategory}>
           <Row>
             <Col lg={6}>
               <FormGroup>
-                <Label htmlFor="name">Nome do subcategory</Label>
+                <Label htmlFor="name">Nome da SubCategoria</Label>
                 <AvField
                   name="name"
                   value={subcategory.name}
                   type="text"
                   className="form-control"
                   id="cupomCode"
-                  placeholder="Número do subcategory"
-                  errorMessage=" Informe o Número do subcategory."
+                  placeholder="Número da subcategoria"
+                  errorMessage=" Informe o Número da subcategoria."
                   validate={{ required: { value: true } }}
                 />
               </FormGroup>
@@ -284,8 +284,8 @@ const Subcategories = () => {
                   type="text"
                   className="form-control"
                   id="cupomCode"
-                  placeholder="Número de cadeiras"
-                  errorMessage=" Informe o Número do subcategory."
+                  placeholder="Descrição"
+                  errorMessage=" Informe a Descrição da subcategoria."
                   validate={{ required: { value: true } }}
                 />
               </FormGroup>
@@ -294,7 +294,7 @@ const Subcategories = () => {
           <Row>
             <Col lg={12}>
             <FormGroup>
-              <Label htmlFor="category_id">categoria</Label>
+              <Label htmlFor="category_id">Categoria</Label>
                 <AvField
                   name="category_id"
                   type="select"
@@ -338,7 +338,7 @@ const Subcategories = () => {
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-          <Breadcrumbs title="Subcategories" breadcrumbItems={breadcrumbItems} />
+          <Breadcrumbs title="Subcategorias" breadcrumbItems={breadcrumbItems} />
           <Row>
             <Col xs={12}>
               <Card>
@@ -349,7 +349,7 @@ const Subcategories = () => {
                       onClick={addNewSubcategory}
                       className="btn btn-success mb-2"
                     >
-                      <i className="mdi mdi-plus mr-2"></i> Novo Subcategory
+                      <i className="mdi mdi-plus mr-2"></i> Nova Subcategoria
                     </Link>
                   </div>
                   {showLoading()}
@@ -358,11 +358,11 @@ const Subcategories = () => {
                     data={tableSubcategoryContent}
                     noBottomColumns
                     disableRetreatAfterSorting
-                    infoLabel={['Mostrando', 'a', 'de', 'subcategories']}
+                    infoLabel={['Mostrando', 'a', 'de', 'subcategorias']}
                     searchLabel="Buscar"
                     paginationLabel={['Anterior', 'Próximo']}
-                    entriesLabel="Mostrando subcategories"
-                    noRecordsFoundLabel="Nenhum subcategory encontrado"
+                    entriesLabel="Mostrando subcategorias"
+                    noRecordsFoundLabel="Nenhum subcategoria encontrado"
                   />
                 </CardBody>
               </Card>

@@ -209,7 +209,7 @@ const Roles = () => {
 
   const tableRoleContent = {
     columns: [
-      { label: 'Nome do Role', field: 'name', sort: 'asc', width: 100 },
+      { label: 'Nome do Cargo', field: 'name', sort: 'asc', width: 100 },
       { label: 'Ações', field: 'action', width: 150 },
     ],
     rows: formattedRoleList(cupomList),
@@ -235,15 +235,15 @@ const Roles = () => {
           <Row>
             <Col lg={12}>
               <FormGroup>
-                <Label htmlFor="name">Nome do role</Label>
+                <Label htmlFor="name">Nome do cargo</Label>
                 <AvField
                   name="name"
                   value={role.name}
                   type="text"
                   className="form-control"
                   id="cupomCode"
-                  placeholder="Número do role"
-                  errorMessage=" Informe o Número do role."
+                  placeholder="Número do cargo"
+                  errorMessage=" Informe o Número do cargo."
                   validate={{ required: { value: true } }}
                 />
               </FormGroup>
@@ -273,7 +273,7 @@ const Roles = () => {
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-          <Breadcrumbs title="Roles" breadcrumbItems={breadcrumbItems} />
+          <Breadcrumbs title="Cargos" breadcrumbItems={breadcrumbItems} />
           <Row>
             <Col xs={12}>
               <Card>
@@ -284,7 +284,7 @@ const Roles = () => {
                       onClick={addNewRole}
                       className="btn btn-success mb-2"
                     >
-                      <i className="mdi mdi-plus mr-2"></i> Novo Role
+                      <i className="mdi mdi-plus mr-2"></i> Novo Cargo
                     </Link>
                   </div>
                   {showLoading()}
@@ -293,11 +293,11 @@ const Roles = () => {
                     data={tableRoleContent}
                     noBottomColumns
                     disableRetreatAfterSorting
-                    infoLabel={['Mostrando', 'a', 'de', 'roles']}
+                    infoLabel={['Mostrando', 'a', 'de', 'cargos']}
                     searchLabel="Buscar"
                     paginationLabel={['Anterior', 'Próximo']}
-                    entriesLabel="Mostrando roles"
-                    noRecordsFoundLabel="Nenhum role encontrado"
+                    entriesLabel="Mostrando cargos"
+                    noRecordsFoundLabel="Nenhum cargo encontrado"
                   />
                 </CardBody>
               </Card>

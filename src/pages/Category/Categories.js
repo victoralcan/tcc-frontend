@@ -210,7 +210,7 @@ const Categories = () => {
 
   const tableCategoryContent = {
     columns: [
-      { label: 'Nome do Category', field: 'name', sort: 'asc', width: 100 },
+      { label: 'Nome da Categoria', field: 'name', sort: 'asc', width: 100 },
       {
         label: 'Descrição',
         field: 'description',
@@ -235,22 +235,22 @@ const Categories = () => {
       size="lg"
     >
       <ModalHeader toggle={showModalCategory}>
-        {category.id ? 'Editar Category' : 'Adicionar Category'}
+        {category.id ? 'Editar Categoria' : 'Adicionar Categoria'}
       </ModalHeader>
       <ModalBody>
         <AvForm onValidSubmit={saveCategory}>
           <Row>
             <Col lg={6}>
               <FormGroup>
-                <Label htmlFor="name">Nome do category</Label>
+                <Label htmlFor="name">Nome da categoria</Label>
                 <AvField
                   name="name"
                   value={category.name}
                   type="text"
                   className="form-control"
                   id="cupomCode"
-                  placeholder="Número do category"
-                  errorMessage=" Informe o Número do category."
+                  placeholder="Número da categoria"
+                  errorMessage=" Informe o Número do categoria."
                   validate={{ required: { value: true } }}
                 />
               </FormGroup>
@@ -264,8 +264,8 @@ const Categories = () => {
                   type="text"
                   className="form-control"
                   id="cupomCode"
-                  placeholder="Número de cadeiras"
-                  errorMessage=" Informe o Número do category."
+                  placeholder="Descrição"
+                  errorMessage=" Informe a Descrição da categoria."
                   validate={{ required: { value: true } }}
                 />
               </FormGroup>
@@ -295,7 +295,7 @@ const Categories = () => {
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-          <Breadcrumbs title="Categories" breadcrumbItems={breadcrumbItems} />
+          <Breadcrumbs title="Categorias" breadcrumbItems={breadcrumbItems} />
           <Row>
             <Col xs={12}>
               <Card>
@@ -306,7 +306,7 @@ const Categories = () => {
                       onClick={addNewCategory}
                       className="btn btn-success mb-2"
                     >
-                      <i className="mdi mdi-plus mr-2"></i> Novo Category
+                      <i className="mdi mdi-plus mr-2"></i> Novo Categoria
                     </Link>
                   </div>
                   {showLoading()}
@@ -315,11 +315,11 @@ const Categories = () => {
                     data={tableCategoryContent}
                     noBottomColumns
                     disableRetreatAfterSorting
-                    infoLabel={['Mostrando', 'a', 'de', 'categories']}
+                    infoLabel={['Mostrando', 'a', 'de', 'categoria']}
                     searchLabel="Buscar"
                     paginationLabel={['Anterior', 'Próximo']}
-                    entriesLabel="Mostrando categories"
-                    noRecordsFoundLabel="Nenhum category encontrado"
+                    entriesLabel="Mostrando categorias"
+                    noRecordsFoundLabel="Nenhum categoria encontrada"
                   />
                 </CardBody>
               </Card>

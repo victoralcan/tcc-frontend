@@ -213,7 +213,7 @@ const Tables = () => {
 
   const tableTableContent = {
     columns: [
-      { label: 'Número do Table', field: 'number', sort: 'asc', width: 100 },
+      { label: 'Número da mesa', field: 'number', sort: 'asc', width: 100 },
       {
         label: 'Ocupada',
         field: 'busy',
@@ -244,22 +244,22 @@ const Tables = () => {
       size="lg"
     >
       <ModalHeader toggle={showModalTable}>
-        {table.id ? 'Editar Table' : 'Adicionar Table'}
+        {table.id ? 'Editar Mesa' : 'Adicionar Mesa'}
       </ModalHeader>
       <ModalBody>
         <AvForm onValidSubmit={saveTable}>
           <Row>
             <Col lg={6}>
               <FormGroup>
-                <Label htmlFor="number">Código do table</Label>
+                <Label htmlFor="number">Código da Mesa</Label>
                 <AvField
                   name="number"
                   value={table.number}
                   type="number"
                   className="form-control"
                   id="cupomCode"
-                  placeholder="Número do table"
-                  errorMessage=" Informe o Número do table."
+                  placeholder="Número da Mesa"
+                  errorMessage=" Informe o Número da Mesa."
                   validate={{ required: { value: true } }}
                 />
               </FormGroup>
@@ -274,7 +274,7 @@ const Tables = () => {
                   className="form-control"
                   id="cupomCode"
                   placeholder="Número de cadeiras"
-                  errorMessage=" Informe o Número do table."
+                  errorMessage=" Informe o Número de  Cadeiras da Mesa."
                   validate={{ required: { value: true } }}
                 />
               </FormGroup>
@@ -315,7 +315,7 @@ const Tables = () => {
                       onClick={addNewTable}
                       className="btn btn-success mb-2"
                     >
-                      <i className="mdi mdi-plus mr-2"></i> Novo Table
+                      <i className="mdi mdi-plus mr-2"></i> Nova Mesa
                     </Link>
                   </div>
                   {showLoading()}
@@ -324,11 +324,11 @@ const Tables = () => {
                     data={tableTableContent}
                     noBottomColumns
                     disableRetreatAfterSorting
-                    infoLabel={['Mostrando', 'a', 'de', 'tables']}
+                    infoLabel={['Mostrando', 'a', 'de', 'mesas']}
                     searchLabel="Buscar"
                     paginationLabel={['Anterior', 'Próximo']}
-                    entriesLabel="Mostrando tables"
-                    noRecordsFoundLabel="Nenhum table encontrado"
+                    entriesLabel="Mostrando Mesas"
+                    noRecordsFoundLabel="Nenhum mesa encontrada"
                   />
                 </CardBody>
               </Card>
